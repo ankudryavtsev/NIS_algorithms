@@ -16,13 +16,14 @@ public abstract class AbstractModel {
             value[i] = (byte) random.nextInt(2);
         }
     }
-    
+
+    protected AbstractModel() {
+    }
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         StringBuilder builder = new StringBuilder();
-        for(byte b:value)
-        {
+        for (byte b : value) {
             builder.append(b);
         }
         return builder.toString();

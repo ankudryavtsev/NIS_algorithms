@@ -21,6 +21,21 @@ public class ExtraModel extends AbstractModel
     protected ExtraModel()
     {
     }
+
+    private static long counter;
+    public static long getCounter()
+    {
+        return counter;
+    }
+    public static void increaseCounter(int i)
+    {
+        counter += i;
+    }
+    public static void increaseCounter()
+    {
+        counter += 1;
+    }
+
     /**
      * @return Единица в обратном/прямом коде
      */
@@ -61,6 +76,7 @@ public class ExtraModel extends AbstractModel
      */
     public ExtraModel inverse()
     {
+        increaseCounter();
         if (this.isPositive()) //positive
         {
             inverseBits();
@@ -69,6 +85,7 @@ public class ExtraModel extends AbstractModel
         else
         {
             ExtraModel result;
+            increaseCounter();
             result = subtract(this, one());
             result.inverseBits();
             return result;
@@ -80,8 +97,10 @@ public class ExtraModel extends AbstractModel
      */
     private void inverseBits()
     {
+        increaseCounter(3);
         for (int i=0;i<value.length;i++)
         {
+            increaseCounter(2);
             value[i]^=1;
         }
     }
@@ -92,6 +111,7 @@ public class ExtraModel extends AbstractModel
      */
     private boolean isPositive()
     {
+        increaseCounter(2);
         return value[0] == 0;
     }
 }
